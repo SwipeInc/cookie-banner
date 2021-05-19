@@ -1,0 +1,26 @@
+{
+  "name": "cookie-banner",
+  "version": "1.0.0",
+  "description": "Basic cookie banner",
+  "main": "index.js",
+  "scripts": {
+    "minify": "npx webpack --config webpack.config.js",
+    "minify:watch": "npx webpack --config webpack.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwipeInc/cookie-banner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwipeInc/cookie-banner/issues"
+  },
+  "homepage": "https://github.com/SwipeInc/cookie-banner#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
