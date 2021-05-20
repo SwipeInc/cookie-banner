@@ -50,7 +50,7 @@ if (!hasCookie) {
   var styleTag = document.createElement("style");
   var bannerTag = document.createElement("div");
 
-  var preset, buttonColour, backgroundColour, textColour;
+  var preset, buttonColour, buttonTextColour, backgroundColour, textColour;
 
   /**
    * Check for theme definition
@@ -68,6 +68,15 @@ if (!hasCookie) {
     buttonColour = scriptTag.getAttribute("data-btn");
   } else {
     buttonColour = "#13b5ea";
+  }
+
+  /**
+   * Check for button text colour definition
+   */
+  if (scriptTag.hasAttribute("data-btn-text")) {
+    buttonTextColour = scriptTag.getAttribute("data-btn-text");
+  } else {
+    buttonTextColour = "#fff";
   }
 
   /**
@@ -135,7 +144,7 @@ if (!hasCookie) {
  *
  * @returns
  */
-function generateStyles(preset, buttonColour, backgroundColour, textColour) {
+function generateStyles(buttonColour, buttonTextColour, backgroundColour, textColour) {
   var styles = `
   .b-cookie-banner {
       position: fixed;
@@ -213,7 +222,7 @@ function generateStyles(preset, buttonColour, backgroundColour, textColour) {
       min-width: 100px;
       width: 100%;
       padding: 10px 15px;
-      color: ${backgroundColour};
+      color: ${buttonTextColour};
       text-transform: uppercase;
       border-radius: 3px;
       transition: box-shadow ease 0.3s, transform ease 0.3s;
