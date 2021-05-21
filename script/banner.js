@@ -109,7 +109,7 @@ if (!hasCookie) {
    * Add style tag
    */
   scriptTag.insertAdjacentElement("afterend", styleTag);
-  styleTag.appendChild(document.createTextNode(generateStyles(preset, buttonColour, backgroundColour, textColour)));
+  styleTag.appendChild(document.createTextNode(generateStyles(buttonColour, buttonTextColour, backgroundColour, textColour)));
 
   /**
    * Add button html
