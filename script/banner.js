@@ -1,7 +1,7 @@
 /**
  * Check if the cookie present otherwise abort
  */
-var cookieName = window.location.host.split(".")[0] + "_cookie_banner";
+var cookieName = window.location.host.split(".")[0] + "_banner";
 var hasCookie = getCookie(cookieName);
 
 /**
