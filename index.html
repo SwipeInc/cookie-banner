@@ -17,24 +17,12 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <button onclick="clearCookie()">Clear cookie</button>
+    <button onclick="clearStorageKey()">Clear Storage Key</button>
 
     <script>
-      function clearCookie() {
-        deleteCookie(window.location.host + "_cookie_banner");
+      function clearStorageKey() {
+        window.localStorage.removeItem("cookie_banner_accepted");
         window.location.reload();
-      }
-
-      function getCookie(name) {
-        return document.cookie.split(";").some((c) => {
-          return c.trim().startsWith(name + "=");
-        });
-      }
-
-      function deleteCookie(name, path, domain) {
-        if (getCookie(name)) {
-          document.cookie = name + "=" + (path ? ";path=" + path : "") + (domain ? ";domain=" + domain : "") + ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
-        }
       }
     </script>
 

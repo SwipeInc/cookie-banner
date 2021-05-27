@@ -1,26 +1,9 @@
 /**
  * Check if the cookie present otherwise abort
  */
-var cookieName = window.location.host.split(".")[0] + "_banner";
-var hasCookie = getCookie(cookieName);
-
-/**
- * Set cookie value
- *
- * @param {*} name
- * @param {*} value
- * @param {*} daysToLive
- */
-function setCookie(name, value, daysToLive) {
-  // Encode value in order to escape semicolons, commas, and whitespace
-  var cookie = name + "=" + encodeURIComponent(value);
-  if (typeof daysToLive === "number") {
-    /* Sets the max-age attribute so that the cookie expires
-        after the specified number of days */
-    cookie += "; max-age=" + daysToLive * 24 * 60 * 60;
-    document.cookie = cookie;
-  }
-}
+var myStorage = window.localStorage;
+var storageKey = "cookie_banner_accepted";
+var hasBannerKey = myStorage.getItem(storageKey);
 
 /**
  * Get cookie value
@@ -28,7 +11,7 @@ function setCookie(name, value, daysToLive) {
  * @param {*} name
  * @returns
  */
-function getCookie(name) {
+function getLocalstorage(name) {
   cookies = document.cookie.split(";");
   for (var i = 0; i < cookies.length; i++) {
     var c = cookies[i].split("=");
@@ -42,7 +25,7 @@ function getCookie(name) {
 /**
  * Check if script should execute any further
  */
-if (!hasCookie) {
+if (!hasBannerKey) {
   /**
    * Create tags and script reference
    */
@@ -282,7 +265,7 @@ function generateCookieBanner() {
  * Accept the cookie banner and store cookie to not display again
  */
 function acceptCookies() {
-  setCookie(cookieName, "accepted", 365);
+  myStorage.setItem(storageKey, true);
   dismissCookieBanner();
 }
 
