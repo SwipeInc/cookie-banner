@@ -33,7 +33,16 @@ if (!hasBannerKey) {
   var styleTag = document.createElement("style");
   var bannerTag = document.createElement("div");
 
-  var preset, buttonColour, buttonTextColour, backgroundColour, textColour;
+  var termsUrl, preset, buttonColour, buttonTextColour, backgroundColour, textColour;
+
+  /**
+   * Check for a custom terms link
+   */
+  if (scriptTag.hasAttribute("data-terms-url")) {
+    termsUrl = scriptTag.hasAttribute("data-terms-url");
+  } else {
+    termsUrl = "https://www.multichoice.com/privacy-cookie-notice/";
+  }
 
   /**
    * Check for theme definition
@@ -116,7 +125,7 @@ if (!hasBannerKey) {
   dismissBtn.addEventListener(
     "click",
     function () {
-      dismissCookieBanner();
+      dismissCookieBanner(termsUrl);
     },
     false
   );
@@ -245,12 +254,12 @@ function generateStyles(buttonColour, buttonTextColour, backgroundColour, textCo
  *
  * @returns
  */
-function generateCookieBanner() {
+function generateCookieBanner(termsUrl) {
   var html = `
       <div class="b-cookie-banner">
           <div class="e-description">
               We use cookies to improve your site experience, perform analytics and show you relevant advertising. By clicking “OK”, you agree to the storing of cookies on your device.
-              <a href="https://www.multichoice.com/privacy-cookie-notice/" target="_blank">View our cookie policy</a>
+              <a href="${termsUrl}" target="_blank">View our cookie policy</a>
           </div>
           <div class="e-button">
               <button id="accept-btn">Ok</button>
