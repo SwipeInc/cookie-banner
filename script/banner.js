@@ -39,7 +39,7 @@ if (!hasBannerKey) {
    * Check for a custom terms link
    */
   if (scriptTag.hasAttribute("data-terms-url")) {
-    termsUrl = scriptTag.hasAttribute("data-terms-url");
+    termsUrl = scriptTag.getAttribute("data-terms-url");
   } else {
     termsUrl = "https://www.multichoice.com/privacy-cookie-notice/";
   }
@@ -107,7 +107,7 @@ if (!hasBannerKey) {
    * Add button html
    */
   scriptTag.insertAdjacentElement("afterend", bannerTag);
-  bannerTag.innerHTML = generateCookieBanner();
+  bannerTag.innerHTML = generateCookieBanner(termsUrl);
 
   // Find button elements
   var acceptBtn = document.getElementById("accept-btn");
@@ -125,7 +125,7 @@ if (!hasBannerKey) {
   dismissBtn.addEventListener(
     "click",
     function () {
-      dismissCookieBanner(termsUrl);
+      dismissCookieBanner();
     },
     false
   );
