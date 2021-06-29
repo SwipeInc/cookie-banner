@@ -29,3 +29,20 @@ Here is a simple example of how to add these attributes:
    data-terms-url="https://swipeix.com/terms">
 </script>
 ```
+<br />
+
+## 🏷 Google Tag Manager
+
+If you are planning on injecting the script with GTM, create the script programmatically because GTM will strip away any data attributes on the script tag
+
+```
+<script>
+  (function() {
+    var el = document.createElement('script');
+    el.setAttribute('src', 'https://swipeinc.github.io/cookie-banner/dist/banner.min.js');
+    el.setAttribute('data-terms-url', 'https://swipeix.com/terms');
+    el.setAttribute('data-btn', '#022b49');
+    document.body.appendChild(el);
+  })();
+</script>
+```
