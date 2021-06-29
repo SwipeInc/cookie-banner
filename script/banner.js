@@ -33,7 +33,7 @@ if (!hasBannerKey) {
   var styleTag = document.createElement("style");
   var bannerTag = document.createElement("div");
 
-  var termsUrl, preset, buttonColour, buttonTextColour, backgroundColour, textColour;
+  var termsUrl, preset, buttonColour, buttonTextColour, backgroundColour, textColour, msg, linkMsg;
 
   /**
    * Check for a custom terms link
@@ -98,6 +98,24 @@ if (!hasBannerKey) {
   }
 
   /**
+   * Check for a custom banner msg
+   */
+   if (scriptTag.hasAttribute("data-msg")) {
+    msg = scriptTag.getAttribute("data-msg");
+  } else {
+    msg = "We use cookies to improve your site experience, perform analytics and show you relevant advertising. By clicking “OK”, you agree to the storing of cookies on your device.";
+  }
+
+  /**
+   * Check for a custom banner link msg
+   */
+   if (scriptTag.hasAttribute("data-link-msg")) {
+    linkMsg = scriptTag.getAttribute("data-link-msg");
+  } else {
+    linkMsg = "View our cookie policy";
+  }
+
+  /**
    * Add style tag
    */
   scriptTag.insertAdjacentElement("afterend", styleTag);
@@ -107,7 +125,7 @@ if (!hasBannerKey) {
    * Add button html
    */
   scriptTag.insertAdjacentElement("afterend", bannerTag);
-  bannerTag.innerHTML = generateCookieBanner(termsUrl);
+  bannerTag.innerHTML = generateCookieBanner(msg, linkMsg, termsUrl);
 
   // Find button elements
   var acceptBtn = document.getElementById("accept-btn");
@@ -254,12 +272,12 @@ function generateStyles(buttonColour, buttonTextColour, backgroundColour, textCo
  *
  * @returns
  */
-function generateCookieBanner(termsUrl) {
+function generateCookieBanner(msg, linkMsg, termsUrl) {
   var html = `
       <div class="b-cookie-banner">
           <div class="e-description">
-              We use cookies to improve your site experience, perform analytics and show you relevant advertising. By clicking “OK”, you agree to the storing of cookies on your device.
-              <a href="${termsUrl}" target="_blank">View our cookie policy</a>
+              ${msg}
+              <a href="${termsUrl}" target="_blank">${linkMsg}</a>
           </div>
           <div class="e-button">
               <button id="accept-btn">Ok</button>
