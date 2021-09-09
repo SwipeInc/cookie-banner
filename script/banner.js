@@ -4,6 +4,8 @@
 var myStorage = window.localStorage;
 var storageKey = "cookie_banner_accepted";
 var hasBannerKey = myStorage.getItem(storageKey);
+// Temporarily disable for DSTV only sites
+var isDstv = window.location.host.includes("dstv");
 
 /**
  * Get cookie value
@@ -25,7 +27,7 @@ function getLocalstorage(name) {
 /**
  * Check if script should execute any further
  */
-if (!hasBannerKey) {
+if (!hasBannerKey && !isDstv) {
   /**
    * Create tags and script reference
    */
