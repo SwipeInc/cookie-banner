@@ -5,7 +5,7 @@ var myStorage = window.localStorage;
 var storageKey = "cookie_banner_accepted";
 var hasBannerKey = myStorage.getItem(storageKey);
 // Temporarily disable for DSTV only sites
-var isDstv = window.location.host.includes("dstv");
+var isDstv = window.location.host.includes("dstv") || window.location.host.includes("mnetcorporate");
 
 /**
  * Get cookie value
